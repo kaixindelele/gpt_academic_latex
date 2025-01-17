@@ -221,9 +221,9 @@ def request_gpt_model_multi_threads_with_very_awesome_ui_and_high_efficiency(
     # 屏蔽掉 chatglm的多线程，可能会导致严重卡顿
     if not can_multi_process(llm_kwargs['llm_model']):
         max_workers = 3
-    # 将gpt的并发降低为5
-    if llm_kwargs['llm_model'].startswith('gpt-'):
-        max_workers = 3
+    # 取消固定的限制，限制放配置文件中
+    # if llm_kwargs['llm_model'].startswith('gpt-'):
+    #     max_workers = 3
 
     executor = ThreadPoolExecutor(max_workers=max_workers)
     n_frag = len(inputs_array)

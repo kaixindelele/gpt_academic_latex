@@ -410,6 +410,10 @@ def Latex翻译中文并重新编译PDF(txt, llm_kwargs, plugin_kwargs, chatbot,
         "对整个Latex项目进行翻译, 生成中文PDF。函数插件贡献者: Binary-Husky。注意事项: 此插件Windows支持最佳，Linux下必须使用Docker安装，详见项目主README.md。目前对机器学习类文献转化效果最好，其他类型文献转化效果未知。"])
     yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面
 
+    # 在这里，将llm_kwargs中的模型信息，固定为gpt-4o-mini
+    llm_kwargs["llm_model"] = "gpt-4o-mini"
+    print("latex翻译中文并重新编译PDF插件，已将模型信息固定为gpt-4o-mini")
+
     # <-------------- more requirements ------------->
     if ("advanced_arg" in plugin_kwargs) and (plugin_kwargs["advanced_arg"] == ""): plugin_kwargs.pop("advanced_arg")
     more_req = plugin_kwargs.get("advanced_arg", "")
